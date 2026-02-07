@@ -39,6 +39,36 @@
         z-index: 2;
     }
 
+.photo {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    animation: floatPhoto 4s ease-in-out infinite;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Positions around the card */
+.p1 { top: 10%; left: 15%; animation-delay: 0s; }
+.p2 { top: 10%; right: 15%; animation-delay: 1s; }
+.p3 { bottom: 12%; left: 18%; animation-delay: 2s; }
+.p4 { bottom: 12%; right: 18%; animation-delay: 3s; }
+
+@keyframes floatPhoto {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
+}
+
+
+
     @keyframes zoom {
         from { transform: scale(0); opacity: 0; }
         to { transform: scale(1); opacity: 1; }
@@ -132,17 +162,23 @@
 
 <div class="card">
     <div class="rose">🌹</div>
-    <h1>Happy Rose Day</h1>
+    <h1>For you my bestfriend</h1>
     <div id="typing"></div>
-    <div class="from">— To you Ajeeth Kumar 💖</div>
+    <div class="from">— To Ajeeth Kumar 💖</div>
     <button onclick="openPopup()">For You Bestu 🎁</button>
 </div>
+<br>
+<br>
+
+<div class="photo p1"><img src="photo1.jpeg"></div>
+<div class="photo p2"><img src="photo2.jpeg"></div>
+<div class="photo p3"><img src="photo3.jpeg"></div>
+<div class="photo p4"><img src="photo4.jpeg"></div>
 
 <div class="popup" id="popup">
     <div class="popup-content">
         <h2>Dear Bestu 💕</h2>
         <p>
-            This rose is for you 🌹<br>
             For your smile, your kindness,<br>
             and the happiness you bring into my life.
         </p>
@@ -150,6 +186,23 @@
         <button onclick="closePopup()">Close 💝</button>
     </div>
 </div>
+
+<audio id="bgMusic" loop>
+    <source src="Tum Ho Toh Saiyaara.mp3" type="audio/mpeg">
+</audio>
+<script>
+    const music = document.getElementById("bgMusic");
+
+    function startMusicOnce() {
+        music.play().catch(() => {});
+        document.removeEventListener("click", startMusicOnce);
+        document.removeEventListener("touchstart", startMusicOnce);
+    }
+
+    // music starts on first user interaction
+    document.addEventListener("click", startMusicOnce);
+    document.addEventListener("touchstart", startMusicOnce);
+</script>
 
 <script>
     const text = "Bestu 💕";
